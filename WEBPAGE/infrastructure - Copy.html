@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ananth Power Engineers - Infrastructure</title>
+    <link rel="icon" href="../company logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #004a99;
+            --accent-color: #EE4B2B;
+            --light-accent: #4dabf7;
+            --dark-bg: #0a192f;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease-in-out;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation */
+        .do {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 5%;
+            border-bottom: 2px solid rgb(13, 83, 21);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .image {
+            height: 80px;
+            width: auto;
+            margin-left: 20px;
+            transition: var(--transition);
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+        }
+
+        #trans {
+            color: var(--text-color);
+            margin: 0 15px;
+            padding: 5px 0;
+            text-decoration: none;
+            position: relative;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        #trans:hover {
+            color: var(--primary-color);
+        }
+
+        #trans::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgb(13, 83, 21);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        #trans:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Hero Section */
+        .logo {
+            height: 600px;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(0.9);
+        }
+
+        .container {
+            margin-top: 150px;
+            position: relative;
+        }
+
+        /* Typing Effect */
+        #back {
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+            letter-spacing: 5px;
+            padding: 15px 0;
+            position: relative;
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        span {
+            color: skyblue;
+        }
+
+        #r {
+            color: var(--accent-color);
+        }
+
+        #y {
+            color: yellow;
+        }
+
+        /* Content Sections */
+        .infra-section {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .infra-section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .p {
+            font-size: 1.05rem;
+            text-align: justify;
+            padding: 15px 0;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        /* Image Animation */
+        .infra-img-container {
+            width: 100%;
+            overflow: hidden;
+            perspective: 1000px;
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            background: white;
+            padding: 10px;
+        }
+
+        .infra-img-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .infra-img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            transform: translateX(-100px);
+            opacity: 0;
+            clip-path: polygon(0 0, 100% 10%, 90% 100%, 0% 90%);
+            transition: transform 1s ease, opacity 1s ease, clip-path 1s ease;
+            will-change: transform;
+        }
+
+        .infra-img-container:hover .infra-img {
+            transform: rotateY(5deg) scale(1.03);
+        }
+
+        .infra-img.visible {
+            transform: translateX(0);
+            opacity: 1;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        /* Features */
+        .feature-box {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Footer */
+        .foot {
+            background-color: var(--dark-bg);
+            padding: 50px 0 20px;
+            color: var(--light-text);
+        }
+
+        .foot h3, .foot h4 {
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .foot h3::after, .foot h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--light-accent);
+        }
+
+        .foot-in a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .foot-in a:hover {
+            color: var(--light-accent);
+            padding-left: 5px;
+        }
+
+        #icon {
+            display: flex;
+            gap: 15px;
+        }
+
+        #icon a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        #icon a:hover {
+            color: var(--light-accent);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .staggered-reveal > * {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .staggered-reveal.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid;
+            width: 0;
+            animation: typing 3.5s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 992px) {
+            .logo {
+                height: 400px;
+            }
+            
+            .container {
+                margin-top: 120px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .do {
+                flex-direction: column;
+                padding: 15px 0;
+                position: relative;
+            }
+            
+            .image {
+                margin: 10px 0;
+                height: 70px;
+            }
+            
+            .head-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            #trans {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+            
+            .logo {
+                height: 300px;
+                margin-top: 0;
+            }
+            
+            .container {
+                margin-top: 30px;
+            }
+            
+            #back {
+                font-size: 1rem;
+                letter-spacing: 3px;
+                padding: 12px 0;
+            }
+            
+            .p {
+                padding: 15px 0;
+                font-size: 1rem;
+            }
+            
+            .infra-section {
+                padding: 40px 0;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo {
+                height: 250px;
+            }
+            
+            #back {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+                white-space: normal;
+                line-height: 1.5;
+            }
+            
+            .infra-section {
+                padding: 30px 0;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="do">
+        <img class="image scale-up" src="../company logo.png" alt="Ananth Power Engineers Logo"/>
+        <div class="head-content staggered-reveal">
+            <a id="trans" href="index.html">HOME</a>
+            <a id="trans" href="about.html">ABOUT</a>
+            <a id="trans" href="infrastructure.html">INFRASTRUCTURE</a>
+            <a id="trans" href="product.html">PRODUCTS</a>
+            <a id="trans" href="contact.html">CONTACT</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Banner -->
+    <div>
+        <img class="logo scale-up" src="../infrastructure welding1.png" alt="Infrastructure Banner"/>
+    </div>
+    
+    <!-- Tagline -->
+    <section>
+        <p id="back" class="reveal-text">DELIVERING <span id="r">POWER</span> <span id="y">AND</span> <span>PROFESSIONALISM</span></p>
+    </section>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hydraulic Press Brake Section -->
+        <div class="row infra-section">
+            <div class="col-lg-6 col-md-12 slide-in-left">
+                <h2 class="reveal-text"><i class="fas fa-press me-2"></i>Hydraulic Press Brake</h2>
+                <div class="infra-img-container d-lg-none">
+                    <img class="infra-img" src="../bending.jpg" alt="Hydraulic Press Brake">
+                </div>
+                <div class="staggered-reveal">
+                    <p class="p reveal-text">
+                        The stable, robust welded steel frame, crafted from ultrasonically and tensile-tested IS 2062 plate, meets the stringent IMTMA standards, ensuring unmatched durability and precision. With fast approach and return speeds that minimize cycle time, coupled with a slow pressing speed for superior stroke control and bending accuracy, productivity is significantly enhanced.
+                    </p>
+                    <p class="p reveal-text">
+                        The system boasts a repeatability of ± 0.05mm for ram positioning. Its compact cylinders, low-pressure system, and synchronized cylinders via a welded torque tube provide exceptional rigidity and load-bearing capacity. Enhanced with NC upgradability and premium hydraulic components, it ensures reliable performance and easy operation.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 d-none d-lg-block">
+                <div class="infra-img-container">
+                    <img class="infra-img" src="../bending.jpg" alt="Hydraulic Press Brake">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hydraulic Shearing Machine Section -->
+        <div class="row infra-section">
+            <div class="col-lg-6 col-md-12 slide-in-left">
+                <h2 class="reveal-text"><i class="fas fa-cut me-2"></i>Hydraulic Shearing Machine</h2>
+                <div class="infra-img-container d-lg-none">
+                    <img class="infra-img" src="../cutting.jpg" alt="Hydraulic Shearing Machine">
+                </div>
+                <div class="staggered-reveal">
+                    <p class="p reveal-text">
+                        The Guillotine-type hydraulic shearing machine offers twist-free, precise cutting, particularly for thin sheets at lower rake angles, exceeding rated capacity at higher angles. Its stable, robust design features a ram and table with inclined members aligned to the resultant force, enhancing rigidity.
+                    </p>
+                    <p class="p reveal-text">
+                        Safety is ensured with hydraulic and electrical interlocks, while NC upgradation is easily integrated. The bolted square box assembly securely mounts the cylinder, with a guided seal preventing leakage. Sourced from reputable brands, its components ensure reliability, and the ram is guided by six hardened, ground rollers.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 d-none d-lg-block">
+                <div class="infra-img-container">
+                    <img class="infra-img" src="../cutting.jpg" alt="Hydraulic Shearing Machine">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Powder Coating Section -->
+        <div class="row infra-section">
+            <div class="col-lg-6 col-md-12 slide-in-left">
+                <h2 class="reveal-text"><i class="fas fa-spray-can me-2"></i>Powder Coating</h2>
+                <div class="infra-img-container d-lg-none">
+                    <img class="infra-img" src="../powder.png" alt="Powder Coating Process">
+                </div>
+                <div class="staggered-reveal">
+                    <p class="p reveal-text">
+                        Powder coating is a highly efficient dry finishing process where finely ground polymer powder is electrostatically applied to a surface. Upon heating, the powder melts and fuses into a flawless, durable, and uniform coating. Renowned for its exceptional corrosion resistance and vibrant finish, it outperforms traditional liquid paints in both durability and environmental impact.
+                    </p>
+                    <p class="p reveal-text">
+                        Powder coating is eco-friendly, producing minimal VOCs, and allows for the recycling of overspray, reducing waste. Its widespread use spans industries due to its superior performance, sustainability, and aesthetic appeal.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 d-none d-lg-block">
+                <div class="infra-img-container">
+                    <img class="infra-img" src="../powder.png" alt="Powder Coating Process">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Features Section -->
+        <div class="row infra-section">
+            <div class="col-12">
+                <h2 class="text-center reveal-text"><i class="fas fa-star me-2"></i>Our Infrastructure Advantages</h2>
+                <div class="row staggered-reveal">
+                    <div class="col-md-4">
+                        <div class="feature-box reveal-text">
+                            <h4><i class="fas fa-check-circle text-success me-2"></i>Precision Engineering</h4>
+                            <p>Our advanced machinery ensures accuracy within ± 0.05mm tolerance for all components.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-box reveal-text">
+                            <h4><i class="fas fa-bolt text-warning me-2"></i>Modern Technology</h4>
+                            <p>State-of-the-art equipment with NC upgradability for future-proof operations.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-box reveal-text">
+                            <h4><i class="fas fa-shield-alt text-primary me-2"></i>Quality Assurance</h4>
+                            <p>Stringent quality checks at every stage of production for reliable performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="foot">
+        <section class="foot-in staggered-reveal container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="reveal-text">Useful Links</h3>
+                    <div class="staggered-reveal">
+                        <a href="infrastructure.html" class="reveal-text">Infrastructure</a>
+                        <a href="product.html" class="reveal-text">Products</a>
+                        <a href="about.html" class="reveal-text">About Us</a>
+                        <a href="contact.html" class="reveal-text">Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="reveal-text">Connect With Us</h4>
+                    <div id="icon" class="staggered-reveal">
+                        <a href="https://www.instagram.com/ananth_power_engineers?igsh=Zm1scnB4eXV6c2sz/" class="reveal-text" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/ananth-power-engineers/" class="reveal-text" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="reveal-text">Our Products</h3>
+                    <div class="row staggered-reveal">
+                        <div class="col-6">
+                            <a href="dp structure.html" class="reveal-text">DP Structure</a>
+                            <a href="bus duct.html" class="reveal-text">Bus Duct</a>
+                            <a href="mv panel.html" class="reveal-text">MV Panel</a>
+                            <a href="apfc panel.html" class="reveal-text">APFC Panel</a>
+                            <a href="mcc panel.html" class="reveal-text">MCC Panel</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="Drive panel.html" class="reveal-text">Drive Panel</a>
+                            <a href="lighting panel.html" class="reveal-text">Lighting Panel</a>
+                            <a href="smb panel.html" class="reveal-text">SMB Panel</a>
+                            <a href="ht meter box.html" class="reveal-text">HT Meter Box</a>
+                            <a href="ltct meter box.html" class="reveal-text">LTCT Meter Box</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="reveal-text">&copy; 2023 Ananth Power Engineers. All Rights Reserved.</p>
+                </div>
+            </div>
+        </section>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top reveal-text" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Special case for the typing effect
+                        if (entry.target.id === 'back') {
+                            entry.target.classList.add('typing-effect');
+                        }
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            // Observe all elements with animation classes
+            document.querySelectorAll('.reveal-text, .slide-in-left, .slide-in-right, .scale-up, .staggered-reveal, .infra-img').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Special animation for navigation links
+            const navLinks = document.querySelectorAll('#trans');
+            navLinks.forEach((link, index) => {
+                link.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(link);
+            });
+            
+            // Animate footer items sequentially
+            const footerItems = document.querySelectorAll('.foot-in .reveal-text');
+            footerItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.15}s`;
+            });
+            
+            // Back to top button
+            const backToTopButton = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('active');
+                } else {
+                    backToTopButton.classList.remove('active');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Smooth scrolling for all links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

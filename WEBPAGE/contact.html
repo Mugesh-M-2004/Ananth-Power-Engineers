@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ananth Power Engineers - Contact Us</title>
+    <link rel="icon" href="../company logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #004a99;
+            --accent-color: #EE4B2B;
+            --light-accent: #4dabf7;
+            --dark-bg: #0a192f;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease-in-out;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation - Updated to match home page */
+        .do {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 5%;
+            border-bottom: 2px solid rgb(13, 83, 21);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .image {
+            height: 80px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+        }
+
+        #trans {
+            color: var(--text-color);
+            margin: 0 15px;
+            padding: 5px 0;
+            text-decoration: none;
+            position: relative;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        #trans:hover {
+            color: var(--primary-color);
+        }
+
+        #trans::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgb(13, 83, 21);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        #trans:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 5px;
+            margin-left: auto;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .do {
+                flex-direction: row;
+                padding: 10px 5%;
+                position: fixed;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .image {
+                margin: 0;
+                height: 60px;
+                width: auto;
+            }
+
+            .head-content {
+                display: none;
+                position: absolute;
+                top: 80px;
+                right: 0;
+                background-color: white;
+                width: 70%;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+                flex-direction: column;
+                align-items: center;
+                transform: translateX(15px);
+            }
+
+            .head-content.active {
+                display: flex;
+            }
+
+            #trans {
+                margin: 10px 15px 10px 15px;
+                padding: 8px 0;
+                font-size: 16px;
+                text-align: center;
+                width: auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .do {
+                padding: 10px 3%;
+            }
+
+            .image {
+                height: 50px;
+            }
+
+            .head-content {
+                top: 70px;
+                width: 65%;
+                transform: translateX(10px);
+            }
+
+            #trans {
+                margin: 10px 10px 10px 10px;
+            }
+        }
+
+        /* Hero Section */
+        .map {
+            height: 500px;
+            width: 100%;
+            margin-top: 100px;
+            filter: brightness(0.9);
+            transition: var(--transition);
+        }
+
+        .map:hover {
+            filter: brightness(1);
+        }
+
+        .container {
+            margin-top: 50px;
+            position: relative;
+        }
+
+        /* Typing Effect */
+        #back {
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+            letter-spacing: 5px;
+            padding: 15px 0;
+            position: relative;
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        span {
+            color: skyblue;
+        }
+
+        #r {
+            color: var(--accent-color);
+        }
+
+        #y {
+            color: yellow;
+        }
+
+        /* Content Sections */
+        .contact-section {
+            padding: 60px 0;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after, h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .contact-info {
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-right: 20px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .contact-details h2 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background-color: var(--primary-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .contact-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            background-color: white;
+            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-submit {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--light-accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Form success/error messages */
+        .form-message {
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        /* Footer */
+        .foot {
+            background-color: var(--dark-bg);
+            padding: 50px 0 20px;
+            color: var(--light-text);
+        }
+
+        .foot h3, .foot h4 {
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .foot h3::after, .foot h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--light-accent);
+        }
+
+        .foot-in a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .foot-in a:hover {
+            color: var(--light-accent);
+            padding-left: 5px;
+        }
+
+        #icon {
+            display: flex;
+            gap: 15px;
+        }
+
+        #icon a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        #icon a:hover {
+            color: var(--light-accent);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .staggered-reveal > * {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .staggered-reveal.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid;
+            width: 0;
+            animation: typing 3.5s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 992px) {
+            .map {
+                height: 400px;
+                margin-top: 120px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .map {
+                height: 300px;
+                margin-top: 150px;
+            }
+            
+            #back {
+                font-size: 1rem;
+                letter-spacing: 3px;
+                padding: 12px 0;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .contact-form {
+                padding: 20px;
+            }
+            
+            h1, h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .portfolio-link {
+            position: relative;
+        }
+        .portfolio-link:hover {
+            color: var(--light-accent);
+            animation: pop-up 0.3s ease-out forwards;
+        }
+        .portfolio-link:hover i,
+        .portfolio-link:hover span {
+            color: var(--light-accent);
+        }
+        @keyframes pop-up {
+            0% {
+                transform: scale(1) translateY(0);
+                text-shadow: none;
+            }
+            100% {
+                transform: scale(1.1) translateY(-3px);
+                text-shadow: 0 2px 5px rgba(77, 171, 247, 0.5);
+            }
+        }
+        @media (max-width: 576px) {
+            .map {
+                height: 250px;
+            }
+            
+            #back {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+                white-space: normal;
+                line-height: 1.5;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation - Updated to match home page -->
+    <nav class="do" aria-label="Main navigation">
+        <img class="image scale-up" src="../company logo.png" alt="Ananth Power Engineers Logo" loading="lazy"/>
+        <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="head-content" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="head-content staggered-reveal" id="head-content">
+            <a id="trans" href="index.html">HOME</a>
+            <a id="trans" href="about.html">ABOUT</a>
+            <a id="trans" href="infrastructure.html">INFRASTRUCTURE </a>
+            <a id="trans" href="product.html">PRODUCTS</a>
+            <a id="trans" href="contact.html" aria-current="page">CONTACT</a>
+        </div>
+    </nav>
+    
+    <!-- Google Map -->
+    <iframe class="map scale-up" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d663.6495898160798!2d77.55776141060129!3d9.428129522256715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06e9007f5e1a91%3A0xb3d7a3d44fb074b7!2sAnanth%20Power%20Engineers!5e1!3m2!1sen!2sin!4v1722347522227!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+    <!-- Tagline -->
+    <section>
+        <p id="back" class="reveal-text">DELIVERING <span id="r">POWER</span> <span id="y">AND</span> <span>PROFESSIONALISM</span></p>
+    </section>
+    
+    <!-- Main Content -->
+    <div class="container contact-section">
+        <div class="row">
+            <!-- Contact Information -->
+            <div class="col-lg-6 col-md-12 slide-in-left">
+                <h1 class="reveal-text">Contact Information</h1>
+                <div class="staggered-reveal">
+                    <div class="contact-item reveal-text">
+                        <div class="contact-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h2>Company</h2>
+                            <p class="contact-info">
+                                25c Annamaraja Nagar,<br>
+                                Near New Bus Stand,<br>
+                                Rajapalayam,<br>
+                                Virudhunagar - 626117<br> 
+                                Phone: <a href="tel:+919842122156" style="color: #444; text-decoration: none;">9842122156</a>, <a href="tel:+918072863838" style="color: #444; text-decoration: none;">8072863838</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item reveal-text">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h2>Email</h2>
+                            <p class="contact-info">ananthpowerengineers@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="contact-item reveal-text">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h2>Website</h2>
+                            <p class="contact-info">Coming Soon</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="col-lg-6 col-md-12 slide-in-right">
+                <div class="contact-form reveal-text">
+                    <h2 class="text-white">Get in Touch With Us</h2>
+                    <div id="form-message" class="form-message"></div>
+                    <form action="https://formsubmit.co/mmugesh138@gmail.com" method="POST" class="staggered-reveal">
+                        <input type="hidden" name="_subject" value="New message from Ananth Power Engineers website">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="box">
+                        <input type="hidden" name="_next" value="?success=true">
+
+                        <div class="mb-3 reveal-text">
+                            <label for="name" class="form-label text-white">Your name</label>
+                            <input type="text" class="form-control" name="name" id="name" required>
+                        </div>
+                        <div class="mb-3 reveal-text">
+                            <label for="email" class="form-label text-white">Your email</label>
+                            <input type="email" class="form-control" name="email" id="email" required>
+                        </div>
+                        <div class="mb-3 reveal-text">
+                            <label for="subject" class="form-label text-white">Subject</label>
+                            <input type="text" class="form-control" name="subject" id="subject">
+                        </div>
+                        <div class="mb-3 reveal-text">
+                            <label for="message" class="form-label text-white">Your message (optional)</label>
+                            <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-submit reveal-text">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="foot">
+        <section class="foot-in staggered-reveal container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="reveal-text">Useful Links</h3>
+                    <div class="staggered-reveal">
+                        <a href="infrastructure.html" class="reveal-text">Infrastructure</a>
+                        <a href="product.html" class="reveal-text">Products</a>
+                        <a href="about.html" class="reveal-text">About Us</a>
+                        <a href="contact.html" class="reveal-text">Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="reveal-text">Connect With Us</h4>
+                    <div class="staggered-reveal">
+                        <!-- Social Links -->
+                        <div id="icon" class="mb-2">
+                            <a href="https://www.instagram.com/ananth_power_engineers?igsh=Zm1scnB4eXV6c2sz/" class="reveal-text" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/ananth-power-engineers/" class="reveal-text" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                        <!-- Professional Portfolio Link -->
+                        <a href="https://mugesh-m-2004.github.io/Portfolio-Web/"
+                           class="reveal-text portfolio-link"
+                           target="_blank"
+                           style="display: inline-flex; align-items: center; color: var(--text-color); text-decoration: none; transition: var(--transition);">
+                            <i class="fas fa-user-tie me-2" style="color: #ffffff;"></i>
+                            <span class="portfolio-text" style="font-weight: 500;">Explore Our CEO's Digital Presence</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="reveal-text">Our Products</h3>
+                    <div class="row staggered-reveal">
+                        <div class="col-6">
+                            <a href="dp structure.html" class="reveal-text">DP Structure</a>
+                            <a href="bus duct.html" class="reveal-text">Bus Duct</a>
+                            <a href="mv panel.html" class="reveal-text">MV Panel</a>
+                            <a href="apfc panel.html" class="reveal-text">APFC Panel</a>
+                            <a href="mcc panel.html" class="reveal-text">MCC Panel</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="Drive panel.html" class="reveal-text">Drive Panel</a>
+                            <a href="lighting panel.html" class="reveal-text">Lighting Panel</a>
+                            <a href="smb panel.html" class="reveal-text">SMB Panel</a>
+                            <a href="ht meter box.html" class="reveal-text">HT Meter Box</a>
+                            <a href="ltct meter box.html" class="reveal-text">LTCT Meter Box</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="reveal-text">&copy; 2023 Ananth Power Engineers. All Rights Reserved.</p>
+                </div>
+            </div>
+        </section>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top reveal-text" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle functionality
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const headContent = document.querySelector('.head-content');
+          
+            mobileMenuToggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                headContent.classList.toggle('active');
+                this.innerHTML = isExpanded ? '<i class="fas fa-bars"></i>' : '<i class="fas fa-times"></i>';
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('#trans').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        headContent.classList.remove('active');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+
+            // Initialize Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Special case for the typing effect
+                        if (entry.target.id === 'back') {
+                            entry.target.classList.add('typing-effect');
+                        }
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            // Observe all elements with animation classes
+            document.querySelectorAll('.reveal-text, .slide-in-left, .slide-in-right, .scale-up, .staggered-reveal').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Special animation for navigation links
+            const navLinks = document.querySelectorAll('#trans');
+            navLinks.forEach((link, index) => {
+                link.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(link);
+            });
+            
+            // Animate footer items sequentially
+            const footerItems = document.querySelectorAll('.foot-in .reveal-text');
+            footerItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.15}s`;
+            });
+            
+            // Back to top button
+            const backToTopButton = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('active');
+                } else {
+                    backToTopButton.classList.remove('active');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Smooth scrolling for all links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Form submission success message
+            const urlParams = new URLSearchParams(window.location.search);
+            const formMessage = document.getElementById('form-message');
+            
+            if (urlParams.has('success')) {
+                formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+                formMessage.classList.add('success');
+                
+                // Scroll to form
+                setTimeout(() => {
+                    document.querySelector('.contact-form').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }, 500);
+                
+                // Remove success parameter from URL
+                const newUrl = window.location.href.split('?')[0];
+                window.history.replaceState({}, document.title, newUrl);
+            }
+        });
+    </script>
+</body>
+</html>
